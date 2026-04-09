@@ -2,13 +2,13 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-white selection:text-black">
       {/* Navigation */}
-      <nav className="flex justify-between items-center p-6 max-w-7xl mx-auto">
+      {/* <nav className="flex justify-between items-center p-6 max-w-7xl mx-auto">
         <div className="text-xl font-bold tracking-tighter">JOURNAL.AI</div>
         <div className="space-x-8 text-sm font-medium">
           <a href="/signin" className="hover:text-gray-400 transition-colors">Sign In</a>
           <a href="/signup" className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-all">Get Started</a>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
       <header className="max-w-4xl mx-auto text-center pt-24 pb-16 px-6">
