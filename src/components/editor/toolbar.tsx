@@ -133,7 +133,7 @@ export function Toolbar({ editor }: ToolbarProps) {
   };
 
   return (
-    <div className="flex items-center gap-0.5 flex-wrap px-3 py-2 border-b border-border bg-background/80 backdrop-blur sticky top-0 z-10">
+    <div className="flex items-center gap-0.5 flex-wrap px-3 py-2 border-b border-border bg-background sticky top-0 z-10">
       {" "}
       {/* Undo / Redo */}
       <ToolbarButton

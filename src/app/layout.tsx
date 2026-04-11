@@ -42,6 +42,8 @@ export default function RootLayout({
       <body className="h-full antialiased">
         <ThemeProvider
           attribute="class"
+          defaultTheme="moonlight"
+          enableSystem={false}
           themes={[
             "deep-indigo",
             "warm-minimal",
@@ -52,8 +54,6 @@ export default function RootLayout({
             "nordic",
             "solarized",
           ]}
-          defaultTheme="deep-indigo"
-          enableSystem={false}
         >
           <Navbar />
           <main>{children}</main>

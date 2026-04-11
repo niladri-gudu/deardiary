@@ -36,7 +36,7 @@ export default function Editor({
     editorProps: {
       attributes: {
         class:
-          "prose max-w-none focus:outline-none min-h-[60vh] text-lg leading-relaxed text-foreground prose-headings:text-foreground prose-strong:text-foreground prose-blockquote:border-border prose-blockquote:text-muted-foreground prose-code:text-foreground prose-hr:border-border prose-a:text-primary",
+          "prose max-w-none focus:outline-none text-lg leading-snug text-foreground prose-headings:text-foreground prose-strong:text-foreground prose-blockquote:border-border prose-blockquote:text-muted-foreground prose-code:text-foreground prose-hr:border-border prose-a:text-primary",
       },
     },
     onUpdate({ editor }) {
@@ -56,7 +56,7 @@ export default function Editor({
   if (!editor) return null;
 
   return (
-    <div className="rounded-xl border border-zinc-800/60 overflow-hidden bg-zinc-950/40">
+    <div className="bg-background">
       <Toolbar editor={editor} />
       <div className="px-8 py-8">
         <EditorContent editor={editor} />
