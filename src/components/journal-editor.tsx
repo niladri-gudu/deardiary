@@ -45,7 +45,6 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Top bar */}
       <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-3 border-b border-border bg-background backdrop-blur">
         <Link
           href="/journal"
@@ -55,7 +54,6 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
           Journal
         </Link>
         <div className="flex items-center gap-3">
-          <SaveIndicator status={saveStatus} />
           <span className="text-xs text-muted-foreground">
             {isToday ? "Today" : formatDate(date)}
           </span>
@@ -73,6 +71,11 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
         <p className="text-sm text-muted-foreground mb-8">{formatDate(date)}</p>
         <Editor content={initialContent} onChange={setEditorContent} />
       </main>
+
+      {/* Save indicator — fixed bottom right */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <SaveIndicator status={saveStatus} />
+      </div>
     </div>
   );
 }

@@ -14,23 +14,28 @@ export function useAutoSave(data: EntryData, debounceMs = 1500) {
   const [status, setStatus] = useState<SaveStatus>("idle");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const latestData = useRef(data);
+  const hasEverHadContent = useRef(!!(data.contentText || data.title));
 
   useEffect(() => {
     latestData.current = data;
   }, [data]);
 
   useEffect(() => {
-    // don't save if there's nothing yet
-    if (!data.contentText && !data.title) return;
+    if (data.contentText || data.title) {
+      hasEverHadContent.current = true;
+    }
+  }, [data.contentText, data.title]);
 
-    setStatus("saving");
-
+  useEffect(() => {
+    if (!hasEverHadContent.current) return;
     if (timerRef.current) clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(async () => {
+      setStatus("saving");
       try {
         const res = await fetch("/api/journal", {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(latestData.current),
         });
@@ -47,7 +52,12 @@ export function useAutoSave(data: EntryData, debounceMs = 1500) {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [data.title, data.contentText, data.contentJson]);
+  }, [
+    data.title,
+    data.contentText,
+    JSON.stringify(data.contentJson),
+    debounceMs,
+  ]);
 
   return status;
 }
