@@ -6,10 +6,9 @@ import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import UnderlineExt from "@tiptap/extension-underline";
 import ImageExt from "@tiptap/extension-image";
-import Youtube from "@tiptap/extension-youtube";
-import TextAlign from "@tiptap/extension-text-align";
-import Highlight from "@tiptap/extension-highlight";
-import Typography from "@tiptap/extension-typography";
+import TaskList from "@tiptap/extension-task-list";
+import TaskItem from "@tiptap/extension-task-item";
+import Link from "@tiptap/extension-link";
 import { Toolbar } from "./toolbar";
 
 export default function Editor({
@@ -23,11 +22,17 @@ export default function Editor({
     extensions: [
       StarterKit,
       UnderlineExt,
-      Highlight,
-      Typography,
       ImageExt.configure({ inline: false, allowBase64: true }),
-      Youtube.configure({ width: 640, height: 360 }),
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
+
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
+
+      Link.configure({
+        openOnClick: false,
+      }),
+
       Placeholder.configure({
         placeholder: "Start writing your thoughts...",
       }),
@@ -36,7 +41,9 @@ export default function Editor({
     editorProps: {
       attributes: {
         class:
-          "prose max-w-none focus:outline-none text-lg leading-snug text-foreground prose-headings:text-foreground prose-strong:text-foreground prose-blockquote:border-border prose-blockquote:text-muted-foreground prose-code:text-foreground prose-hr:border-border prose-a:text-primary",
+          // "prose max-w-none focus:outline-none text-lg leading-snug text-foreground prose-headings:text-foreground prose-strong:text-foreground prose-blockquote:border-border prose-blockquote:text-muted-foreground prose-code:text-foreground prose-hr:border-border prose-a:text-primary",
+          // "prose prose-lg dark:prose-invert max-w-[65ch] mx-auto focus:outline-none  selection:bg-primary/20 selection:text-primary prose-p:leading-relaxed prose-p:text-foreground/90 prose-headings:font-semibold prose-headings:tracking-tight",
+          "tiptap max-w-none focus:outline-none text-lg leading-snug text-foreground",
       },
     },
     onUpdate({ editor }) {

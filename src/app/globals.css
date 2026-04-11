@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@plugin "@tailwindcss/typography";
+/* @plugin "@tailwindcss/typography"; */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -235,11 +235,6 @@
   @apply backdrop-blur-md bg-card/50 border border-border;
 }
 
-.prose p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
 .tiptap p.is-editor-empty:first-child::before {
   color: var(--muted-foreground);
   content: attr(data-placeholder);
@@ -247,4 +242,55 @@
   height: 0;
   pointer-events: none;
   opacity: 0.4;
+}
+
+.tiptap h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.tiptap h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.tiptap p {
+  margin: 0.5rem 0;
+}
+
+.tiptap blockquote {
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  color: var(--muted-foreground);
+}
+
+.tiptap code {
+  background: var(--muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.tiptap ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tiptap li[data-type="taskItem"] {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.tiptap li[data-type="taskItem"] > label {
+  margin-top: 4px;
+}
+
+.tiptap a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.tiptap img {
+  border-radius: 0.75rem;
+  margin: 1rem 0;
 }
