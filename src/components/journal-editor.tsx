@@ -4,9 +4,6 @@ import { useState } from "react";
 import Editor from "@/components/editor";
 import { SaveIndicator } from "@/components/save-indicator";
 import { useAutoSave } from "@/hooks/use-auto-save";
-import { ThemePicker } from "@/components/theme-picker";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { getLocalDateString } from "@/lib/utils/date";
 
 interface Props {
@@ -44,23 +41,7 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
   const isToday = date === getLocalDateString();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-3 border-b border-border bg-background backdrop-blur">
-        <Link
-          href="/journal"
-          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Journal
-        </Link>
-        <div className="flex items-center gap-3">
-          <span className="text-xs text-muted-foreground">
-            {isToday ? "Today" : formatDate(date)}
-          </span>
-          <ThemePicker />
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-background text-foreground pt-16">
       <main className="max-w-2xl mx-auto px-6 py-14">
         <input
           placeholder="Untitled"

@@ -1,5 +1,6 @@
 import { ArrowRight, Leaf, ShieldCheck, PenLine, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/layout/Footer";
 
 export default function LandingPage() {
   return (
@@ -63,6 +64,8 @@ export default function LandingPage() {
           description="Gentle nudges and habit tracking to help you turn journaling into a lifelong practice."
         />
       </section>
+
+      <Footer />
     </div>
   );
 }

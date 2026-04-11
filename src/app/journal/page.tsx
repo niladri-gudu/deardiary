@@ -26,7 +26,7 @@ export default async function JournalPage() {
   const todayEntry = (entries as any[]).find((e) => e.date === today);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground pt-16">
       <main className="max-w-2xl mx-auto px-6 py-16 space-y-12">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold tracking-tight text-foreground">
