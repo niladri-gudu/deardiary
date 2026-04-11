@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const themes = [
+  { id: "default", name: "System", color: "bg-zinc-500" },
   { id: "deep-indigo", name: "Deep Indigo", color: "bg-[#4F46E5]" },
   { id: "warm-minimal", name: "Warm Minimal", color: "bg-[#FAF7F2]" },
   { id: "forest", name: "Forest Green", color: "bg-[#22c55e]" },

@@ -30,11 +30,17 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, url }) => {
+      const verificationUrl = new URL(url);
+      verificationUrl.searchParams.set("callbackURL", "/verified");
+
       await resend.emails.send({
         from: process.env.EMAIL_FROM!,
         to: user.email,
         subject: "Verify your email — Dear Diary",
-        react: VerifyEmail({ name: user.name, url }),
+        react: VerifyEmail({
+          name: user.name,
+          url: verificationUrl.toString(),
+        }),
       });
     },
   },

@@ -42,7 +42,7 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-16">
-      <main className="max-w-2xl mx-auto px-6 py-14">
+      <main className="max-w-3xl mx-auto px-6 py-14">
         <input
           placeholder="Untitled"
           value={title}
