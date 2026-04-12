@@ -155,7 +155,8 @@ export function Toolbar({ editor }: ToolbarProps) {
   };
 
   return (
-    <div className="flex items-center gap-1 px-3 py-2 rounded-xl border border-border bg-background shadow-lg">
+    <div className="flex items-center gap-1 py-2 flex-nowrap">
+      <div className="pl-3 shrink-0" />{" "}
       <ToolbarButton
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editorState.canUndo}
@@ -259,6 +260,8 @@ export function Toolbar({ editor }: ToolbarProps) {
         className="hidden"
         onChange={addImage}
       />
+      <div className="pr-3 shrink-0 select-none">&#8203;</div>{" "}
+      {/* right spacer with zero-width space */}
     </div>
   );
 }

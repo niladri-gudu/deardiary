@@ -42,9 +42,12 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-16">
-      <div className="fixed bottom-10 left-0 right-0 z-10 flex justify-center pointer-events-none">
+      <div className="fixed left-0 right-0 z-10 flex justify-center pointer-events-none bottom-8">
         {editorInstance && (
-          <div className="pointer-events-auto">
+          <div
+            className="pointer-events-auto max-w-[90vw] overflow-x-auto rounded-xl border border-border bg-background shadow-lg"
+            style={{ scrollbarWidth: "none" }}
+          >
             <Toolbar editor={editorInstance} />
           </div>
         )}
