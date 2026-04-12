@@ -50,14 +50,18 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
         )}
       </div>
 
-      <main className="max-w-3xl mx-auto px-6 pt-26 pb-14">
-        <input
-          placeholder="Untitled"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-full text-4xl font-bold bg-transparent outline-none text-foreground placeholder:text-muted-foreground/20 tracking-tight mb-3"
-        />
-        <p className="text-sm text-muted-foreground mb-8">{formatDate(date)}</p>
+      <main className="max-w-3xl mx-auto px-4 pt-14 pb-14">
+        <div className="px-4">
+          <input
+            placeholder="Untitled"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full text-4xl font-bold bg-transparent outline-none text-foreground placeholder:text-muted-foreground/20 tracking-tight mb-3"
+          />
+          <p className="text-sm text-muted-foreground mb-8">
+            {formatDate(date)}
+          </p>
+        </div>
         <Editor
           content={initialContent}
           onChange={setEditorContent}
