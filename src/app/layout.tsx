@@ -42,17 +42,18 @@ export default function RootLayout({
       <body className="h-full antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="moonlight"
-          enableSystem={false}
+          defaultTheme="light"
+          enableSystem={true}
           themes={[
-            "deep-indigo",
+            "light",
             "warm-minimal",
-            "forest",
             "moonlight",
             "terminal",
-            "rose-quartz",
-            "nordic",
-            "solarized",
+            // "nordic",
+            // "deep-indigo",
+            // "forest",
+            // "rose-quartz",
+            // "solarized",
           ]}
         >
           <Navbar />

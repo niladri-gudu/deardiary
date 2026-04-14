@@ -34,6 +34,15 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
   const [toolbarBottom, setToolbarBottom] = useState(32);
 
   useEffect(() => {
+    const paddingValue = toolbarBottom + 60;
+    document.documentElement.style.scrollPaddingBottom = `${paddingValue}px`;
+
+    return () => {
+      document.documentElement.style.scrollPaddingBottom = "0px";
+    };
+  }, [toolbarBottom]);
+
+  useEffect(() => {
     const viewport = window.visualViewport;
     if (!viewport) return;
 
@@ -74,7 +83,7 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
         )}
       </div> */}
 
-      <main className="max-w-3xl mx-auto px-4 pt-14 pb-14">
+      <main className="max-w-3xl mx-auto px-4 pt-14 pb-40">
         <div className="px-4">
           <input
             placeholder="Untitled"

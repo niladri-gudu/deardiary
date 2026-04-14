@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 
 type SaveStatus = "idle" | "saving" | "saved" | "error";
@@ -13,21 +14,30 @@ interface EntryData {
 export function useAutoSave(data: EntryData, debounceMs = 1500) {
   const [status, setStatus] = useState<SaveStatus>("idle");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
   const latestData = useRef(data);
-  const hasEverHadContent = useRef(!!(data.contentText || data.title));
+  
+  const initialContent = useRef({
+    title: data.title,
+    html: data.contentHtml
+  });
+
+  const isDirty = useRef(false);
 
   useEffect(() => {
     latestData.current = data;
+    
+    if (
+      data.title !== initialContent.current.title || 
+      data.contentHtml !== initialContent.current.html
+    ) {
+      isDirty.current = true;
+    }
   }, [data]);
 
   useEffect(() => {
-    if (data.contentText || data.title) {
-      hasEverHadContent.current = true;
-    }
-  }, [data.contentText, data.title]);
+    if (!isDirty.current) return;
 
-  useEffect(() => {
-    if (!hasEverHadContent.current) return;
     if (timerRef.current) clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(async () => {
@@ -41,10 +51,16 @@ export function useAutoSave(data: EntryData, debounceMs = 1500) {
         });
 
         if (!res.ok) throw new Error("Save failed");
+        
+        initialContent.current = {
+          title: latestData.current.title,
+          html: latestData.current.contentHtml
+        };
+        
         setStatus("saved");
-
         setTimeout(() => setStatus("idle"), 2000);
-      } catch {
+      } catch (err) {
+        console.error("Autosave error:", err);
         setStatus("error");
       }
     }, debounceMs);
@@ -55,7 +71,7 @@ export function useAutoSave(data: EntryData, debounceMs = 1500) {
   }, [
     data.title,
     data.contentText,
-    JSON.stringify(data.contentJson),
+    data.contentHtml,
     debounceMs,
   ]);
 
