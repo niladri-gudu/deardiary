@@ -6,6 +6,9 @@ import Editor from "@/components/editor";
 import { SaveIndicator } from "@/components/save-indicator";
 import { useAutoSave } from "@/hooks/use-auto-save";
 import { Toolbar } from "./editor/toolbar";
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
   date: string;
@@ -72,29 +75,34 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-16">
-      {/* <div className="fixed left-0 right-0 z-10 flex justify-center pointer-events-none bottom-8">
-        {editorInstance && (
-          <div
-            className="pointer-events-auto max-w-[90vw] overflow-x-auto rounded-xl border border-border bg-background shadow-lg"
-            style={{ scrollbarWidth: "none" }}
-          >
-            <Toolbar editor={editorInstance} />
-          </div>
-        )}
-      </div> */}
-
       <main className="max-w-3xl mx-auto px-4 pt-14 pb-40">
-        <div className="px-4">
-          <input
-            placeholder="Untitled"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full text-4xl font-bold bg-transparent outline-none text-foreground placeholder:text-muted-foreground/20 tracking-tight mb-3"
-          />
-          <p className="text-sm text-muted-foreground mb-8">
-            {formatDate(date)}
-          </p>
+        <div className="flex items-center justify-between gap-4 px-4 mb-8">
+          <div className="flex-1 space-y-1">
+            <input
+              placeholder="Untitled"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full text-4xl font-bold bg-transparent outline-none text-foreground placeholder:text-muted-foreground/20 tracking-tight"
+            />
+            <p className="text-sm text-muted-foreground font-medium">
+              {formatDate(date)}
+            </p>
+          </div>
+
+          <Link href="/journal" className="mt-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded-full hover:bg-accent shrink-0 px-4 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors border border-transparent hover:border-border/50"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span className="text-xs font-semibold uppercase tracking-wide">
+                Back
+              </span>
+            </Button>
+          </Link>
         </div>
+
         <Editor
           content={initialContent}
           onChange={setEditorContent}
@@ -116,7 +124,6 @@ export function JournalEditor({ date, initialTitle, initialContent }: Props) {
         )}
       </div>
 
-      {/* Save indicator — fixed bottom right */}
       <div className="fixed bottom-6 right-6 z-50">
         <SaveIndicator status={saveStatus} />
       </div>

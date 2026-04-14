@@ -43,10 +43,6 @@ function ToolbarButton({
         e.preventDefault();
         onClick();
       }}
-      onTouchStart={(e) => {
-        e.preventDefault();
-        onClick();
-      }}
       disabled={disabled}
       title={title}
       className={`
