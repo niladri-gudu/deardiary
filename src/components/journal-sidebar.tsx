@@ -85,7 +85,7 @@ export function JournalSidebar({
             className={cn(
               "w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all",
               selectedDate === null
-                ? "bg-accent text-foreground shadow-sm"
+                ? "bg-accent text-accent-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
             )}
           >
@@ -166,7 +166,7 @@ export function JournalSidebar({
                             : "hover:bg-accent/50 text-muted-foreground hover:text-foreground"
                         )}
                       >
-                        <p className={cn("text-sm font-semibold truncate", isSelected ? "text-foreground" : "")}>
+                        <p className={cn("text-sm font-semibold truncate", isSelected ? "text-accent-foreground" : "")}>
                           {entry.title || "Untitled"}
                         </p>
                         <p className="text-xs line-clamp-1 opacity-70 mt-0.5">
