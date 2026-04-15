@@ -95,7 +95,7 @@ export function JournalHome({ today, entries, userName }: Props) {
 
           {/* Preview Panel Container - Borderless and background-free */}
           <div className="flex-1 overflow-hidden flex flex-col w-full">
-            <div className="flex-1 overflow-y-auto px-2 lg:px-4">
+            <div className="flex-1 overflow-y-auto px-2 lg:px-4 no-scrollbar">
               {showDashboard ? (
                 /* 1. DASHBOARD VIEW */
                 <div className="h-full flex flex-col items-center justify-center text-center max-w-md mx-auto">

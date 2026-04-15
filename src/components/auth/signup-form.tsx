@@ -56,7 +56,7 @@ export function SignupForm() {
 
   return (
     <Card className="w-full max-w-md border-border shadow-2xl relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-border to-transparent" />
 
       <CardHeader className="space-y-2 pb-8">
         <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
