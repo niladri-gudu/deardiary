@@ -35,7 +35,7 @@ export function EntryPreview({
   return (
     // Added 'group' here so the Delete button knows when to show up
     <div className="max-w-3xl mx-auto space-y-8 group">
-      <div className="flex items-start justify-between gap-6">
+      <div className="flex items-center justify-between gap-6">
         <div className="space-y-3 flex-1">
           <div className="flex items-center gap-2">
             {isToday && (
@@ -56,17 +56,16 @@ export function EntryPreview({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-1 shrink-0 mt-2">
-          <Link href={`/journal/${date}`}>
+        <div className="flex flex-col sm:flex-row items-center gap-2 shrink-0 mt-4 sm:mt-2">
+          <Link href={`/journal/${date}`} className="w-full sm:w-auto">
             <Button
               size="sm"
-              className="rounded-full px-5 shadow-lg shadow-primary/10 font-bold tracking-tight"
+              className="w-full sm:w-auto rounded-full px-5 font-bold tracking-tight"
             >
               <Pencil className="h-3.5 w-3.5 mr-2" />
               Edit
             </Button>
           </Link>
-
           <DeleteEntryButton date={date} onSuccess={onDeleteSuccess} />
         </div>
       </div>

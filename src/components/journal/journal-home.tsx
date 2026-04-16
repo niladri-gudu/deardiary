@@ -58,7 +58,7 @@ export function JournalHome({ today, entries, userName }: Props) {
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-16 lg:pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Mobile Header Toggle - Simplified and borderless */}
         <div className="lg:hidden flex items-center justify-between mb-8 px-2">
           <Button
