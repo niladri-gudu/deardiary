@@ -1,7 +1,6 @@
 {
   "name": "deardiary",
   "version": "0.1.0",
-  "private": true,
   "pnpm": {
     "onlyBuiltDependencies": [
       "msw"
@@ -67,7 +66,7 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@10.x",
+  "packageManager": "pnpm@10.27.0",
   "msw": {
     "workerDirectory": [
       "public"
