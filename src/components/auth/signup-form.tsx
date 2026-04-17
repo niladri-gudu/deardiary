@@ -3,16 +3,9 @@
 import { useState } from "react";
 import { signUp, signIn } from "@/lib/auth-client";
 import Link from "next/link";
-import { Loader2, User, Mail, Lock } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
@@ -34,146 +27,117 @@ export function SignupForm() {
     setVerifyPending(true);
   };
 
-  if (verifyPending) {
-    return (
-      <Card className="w-full max-w-md border-border shadow-2xl">
-        <CardContent className="flex flex-col items-center gap-4 py-12 text-center">
-          <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
-            <Mail className="h-5 w-5 text-muted-foreground" />
-          </div>
-          <h2 className="text-xl font-semibold text-foreground">
-            Check your email
-          </h2>
-          <p className="text-sm text-muted-foreground max-w-xs">
-            We sent a verification link to{" "}
-            <span className="text-foreground">{email}</span>. Click it to
-            activate your account.
-          </p>
-        </CardContent>
-      </Card>
-    );
-  }
-
   return (
-    <Card className="w-full max-w-md border-border shadow-2xl relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-border to-transparent" />
+    <div className="w-full max-w-sm mx-auto px-4">
+      {verifyPending ? (
+        <div className="text-center space-y-8">
+          <h2 className="text-5xl font-black tracking-tighter">
+            Check your <br />
+            <span className="text-primary/60 italic font-serif font-light text-6xl">
+              ink.
+            </span>
+          </h2>
+          <p className="text-muted-foreground font-mono text-xs tracking-widest leading-relaxed">
+            A verification link has been dispatched to <br />
+            <span className="text-foreground block mt-2 underline decoration-primary/40 underline-offset-4">
+              {email}
+            </span>
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-10">
+          {/* Header */}
+          <div className="space-y-3">
+            <h1 className="text-5xl font-black tracking-tighter leading-none">
+              New <br />
+              <span className="text-primary/60 italic font-serif font-light text-6xl">
+                journey.
+              </span>
+            </h1>
+            <p className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.2em]">
+              Initialize identity // Zero-knowledge storage
+            </p>
+          </div>
 
-      <CardHeader className="space-y-2 pb-8">
-        <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
-          Begin your journey
-        </CardTitle>
-        <CardDescription className="text-muted-foreground text-base">
-          Start capturing your thoughts, forever.
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent className="grid gap-5">
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <Label
-              htmlFor="name"
-              className="text-muted-foreground font-medium ml-1"
-            >
-              Full Name
-            </Label>
-            <div className="relative group">
-              <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/50 group-focus-within:text-foreground transition-colors" />
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">
+                Identity_Name
+              </Label>
               <Input
-                id="name"
                 placeholder="Your name"
-                className="pl-10 h-11 bg-foreground/5"
+                className="h-12 bg-transparent border-0 border-b border-border/50 rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary transition-all placeholder:text-muted-foreground/30 text-lg"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-          </div>
 
-          <div className="grid gap-2">
-            <Label
-              htmlFor="email-signup"
-              className="text-muted-foreground font-medium ml-1"
-            >
-              Email
-            </Label>
-            <div className="relative group">
-              <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/50 group-focus-within:text-foreground transition-colors" />
+            <div className="space-y-2">
+              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">
+                Secure_Email
+              </Label>
               <Input
-                id="email-signup"
                 type="email"
                 placeholder="name@example.com"
-                className="pl-10 h-11 bg-foreground/5"
+                className="h-12 bg-transparent border-0 border-b border-border/50 rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary transition-all placeholder:text-muted-foreground/30 text-lg"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-          </div>
 
-          <div className="grid gap-2">
-            <Label
-              htmlFor="password-signup"
-              className="text-muted-foreground font-medium ml-1"
-            >
-              Password
-            </Label>
-            <div className="relative group">
-              <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/50 group-focus-within:text-foreground transition-colors" />
+            <div className="space-y-2">
+              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">
+                Secret_Key
+              </Label>
               <Input
-                id="password-signup"
                 type="password"
                 placeholder="••••••••"
-                className="pl-10 h-11 bg-foreground/5"
+                className="h-12 bg-transparent border-0 border-b border-border/50 rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary transition-all placeholder:text-muted-foreground/30 text-lg"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+
+            <div className="pt-4 space-y-4">
+              <Button
+                className="w-full h-14 rounded-full font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
+                onClick={handleSignup}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <>
+                    Create Account <ArrowRight className="ml-2 h-5 w-5" />
+                  </>
+                )}
+              </Button>
+
+              <Button
+                variant="ghost"
+                className="w-full h-12 rounded-full font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground"
+                onClick={() =>
+                  signIn.social({ provider: "google", callbackURL: "/journal" })
+                }
+              >
+                <GoogleIcon />
+                Google_Enroll
+              </Button>
+            </div>
           </div>
+
+          <p className="text-center text-[11px] font-medium text-muted-foreground/60 pt-4">
+            Already have an account?{" "}
+            <Link
+              href="/signin"
+              className="text-foreground font-bold border-b border-primary/40 hover:border-primary transition-all pb-0.5"
+            >
+              Sign_In
+            </Link>
+          </p>
         </div>
-
-        <Button
-          className="w-full h-11 rounded-xl font-semibold mt-2"
-          onClick={handleSignup}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            "Create Account"
-          )}
-        </Button>
-
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-border" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-3 text-muted-foreground tracking-widest">
-              Or
-            </span>
-          </div>
-        </div>
-
-        <Button
-          variant="outline"
-          className="w-full h-11 rounded-xl"
-          onClick={() =>
-            signIn.social({ provider: "google", callbackURL: "/journal" })
-          }
-        >
-          <GoogleIcon />
-          Sign up with Google
-        </Button>
-
-        <p className="text-center text-sm text-muted-foreground mt-2">
-          Already have an account?{" "}
-          <Link
-            href="/signin"
-            className="text-foreground underline-offset-4 hover:underline transition-colors"
-          >
-            Sign in
-          </Link>
-        </p>
-      </CardContent>
-    </Card>
+      )}
+    </div>
   );
 }
 
