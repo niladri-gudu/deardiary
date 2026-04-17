@@ -5,7 +5,7 @@ import { useState } from "react";
 import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Loader2, ArrowRight } from "lucide-react";
+import { Loader2, ArrowRight, LogIn, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -147,7 +147,7 @@ export function SigninForm() {
                   className={`flex items-center justify-center gap-2 transition-opacity duration-200 ${isLoading ? "opacity-0" : "opacity-100"}`}
                 >
                   <span>Access Journal</span>
-                  <ArrowRight className="h-5 w-5 shrink-0" />
+                  {/* <Unlock className="h-5 w-5 shrink-0" /> */}
                 </div>
               </div>
             </Button>

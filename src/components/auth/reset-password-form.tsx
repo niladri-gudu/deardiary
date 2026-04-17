@@ -58,13 +58,15 @@ export function ResetPasswordForm() {
     }
   };
 
-return (
+  return (
     <div className="min-h-[85vh] flex flex-col justify-center py-12 px-8 md:px-0 antialiased">
       <div className="w-full max-w-sm mx-auto space-y-10">
         <div className="space-y-3">
           <h1 className="text-5xl font-black tracking-tighter leading-[0.85]">
             Reset <br />
-            <span className="text-primary/60 italic font-serif font-light text-6xl">access.</span>
+            <span className="text-primary/60 italic font-serif font-light text-6xl">
+              access.
+            </span>
           </h1>
           <p className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.2em]">
             Restoring archives // Update security credentials
@@ -84,16 +86,22 @@ return (
           {/* New Secret Field */}
           <div className="space-y-2">
             <div className="flex justify-between items-end">
-              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">New.Secret.Key</Label>
+              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">
+                New.Secret.Key
+              </Label>
               {errors.password && (
-                <span className="text-[9px] font-mono text-destructive uppercase tracking-tighter animate-in fade-in slide-in-from-right-1">// {errors.password}</span>
+                <span className="text-[9px] font-mono text-destructive uppercase tracking-tighter animate-in fade-in slide-in-from-right-1">
+                  // {errors.password}
+                </span>
               )}
             </div>
             <Input
               type="password"
               placeholder="••••••••"
               className={`h-12 bg-transparent border-0 border-b rounded-none px-0 focus-visible:ring-0 transition-all placeholder:text-muted-foreground/30 text-lg ${
-                errors.password ? "border-destructive/50" : "border-border/50 focus-visible:border-primary"
+                errors.password
+                  ? "border-destructive/50"
+                  : "border-border/50 focus-visible:border-primary"
               }`}
               value={password}
               onChange={(e) => {
@@ -106,16 +114,22 @@ return (
           {/* Confirm Secret Field */}
           <div className="space-y-2">
             <div className="flex justify-between items-end">
-              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">Confirm.Secret.Key</Label>
+              <Label className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/60 ml-1">
+                Confirm.Secret.Key
+              </Label>
               {errors.confirm && (
-                <span className="text-[9px] font-mono text-destructive uppercase tracking-tighter animate-in fade-in slide-in-from-right-1">// {errors.confirm}</span>
+                <span className="text-[9px] font-mono text-destructive uppercase tracking-tighter animate-in fade-in slide-in-from-right-1">
+                  // {errors.confirm}
+                </span>
               )}
             </div>
             <Input
               type="password"
               placeholder="••••••••"
               className={`h-12 bg-transparent border-0 border-b rounded-none px-0 focus-visible:ring-0 transition-all placeholder:text-muted-foreground/30 text-lg ${
-                errors.confirm ? "border-destructive/50" : "border-border/50 focus-visible:border-primary"
+                errors.confirm
+                  ? "border-destructive/50"
+                  : "border-border/50 focus-visible:border-primary"
               }`}
               value={confirmPassword}
               onChange={(e) => {
@@ -137,7 +151,7 @@ return (
                   <span>Updating...</span>
                 </div>
               ) : (
-                <>Update Secret <ArrowRight className="ml-2 h-5 w-5" /></>
+                "Update Secret"
               )}
             </Button>
           </div>

@@ -121,7 +121,7 @@ export function ForgotPasswordForm() {
                     </div>
                   ) : (
                     <>
-                      Send Reset Link <ArrowRight className="ml-2 h-5 w-5" />
+                      Send Reset Link
                     </>
                   )}
                 </Button>
