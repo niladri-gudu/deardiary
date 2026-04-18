@@ -56,14 +56,14 @@ export function EntryPreview({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-2 shrink-0 mt-4 sm:mt-2">
-          <Link href={`/journal/${date}`} className="w-full sm:w-auto">
+        <div className="flex items-center gap-2 shrink-0">
+          <Link href={`/journal/${date}`}>
             <Button
               size="sm"
-              className="w-full sm:w-auto rounded-full px-5 font-bold tracking-tight"
+              className="rounded-full font-bold tracking-tight px-3 sm:px-5"
             >
-              <Pencil className="h-3.5 w-3.5 mr-2" />
-              Edit
+              <Pencil className="h-3.5 w-3.5 sm:mr-2" />
+              <span className="hidden sm:inline">Edit</span>
             </Button>
           </Link>
           <DeleteEntryButton date={date} onSuccess={onDeleteSuccess} />

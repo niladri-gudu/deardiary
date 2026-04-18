@@ -227,11 +227,6 @@
     --destructive-foreground: oklch(0.95 0 0);
   }
 
-  .bg-primary:hover {
-    background-color: var(--primary); /* Keeps it solid when selected */
-    opacity: 0.9;
-  }
-
   /* Smooth out the scaling to prevent blurriness */
   .group {
     backface-visibility: hidden;

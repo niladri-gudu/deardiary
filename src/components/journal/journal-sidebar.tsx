@@ -77,7 +77,7 @@ export function JournalSidebar({
             className={cn(
               "w-full justify-start h-auto gap-4 px-4 py-4 rounded-2xl transition-all duration-300 shadow-none border border-transparent",
               selectedDate === null
-                ? "bg-foreground text-background hover:bg-foreground hover:text-background cursor-default" // Lock hover state when selected
+                ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground cursor-default"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/50 hover:border-border/50",
             )}
           >
@@ -247,18 +247,16 @@ export function JournalSidebar({
                         className={cn(
                           "w-full h-auto text-left justify-start px-3 py-3 rounded-2xl transition-all duration-200 flex items-center gap-4 shadow-none border border-transparent",
                           isSelected
-                            ? "bg-foreground text-background hover:bg-foreground hover:text-background cursor-default"
+                            ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground cursor-default"
                             : "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
                         )}
                       >
                         <div
-
-                        
                           className={cn(
                             "shrink-0 w-9 h-9 rounded-xl flex items-center justify-center border transition-colors text-xs font-bold",
                             isSelected
-                              ? "bg-background/10 border-background/20 text-background"
-                              : "bg-muted border-transparent group-hover:border-border text-foreground",
+                              ? "bg-primary-foreground/20 border-primary-foreground/20 text-primary-foreground"
+                              : "bg-muted border-transparent text-foreground",
                           )}
                         >
                           {day}
@@ -271,7 +269,7 @@ export function JournalSidebar({
                             className={cn(
                               "text-[10px] truncate mt-1 leading-none opacity-60",
                               isSelected
-                                ? "text-background/70"
+                                ? "text-primary-foreground/70"
                                 : "text-muted-foreground",
                             )}
                           >

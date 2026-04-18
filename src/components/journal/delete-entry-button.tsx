@@ -53,14 +53,16 @@ export function DeleteEntryButton({
         <Button
           variant="destructive"
           size="sm"
-          className="rounded-full px-5 font-bold tracking-tight transition-transform active:scale-95"
+          className="rounded-full px-3 sm:px-5 font-bold tracking-tight transition-transform active:scale-95"
         >
           {loading ? (
-            <Loader2 className="h-3.5 w-3.5 animate-spin mr-2" />
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
           ) : (
-            <Trash2 className="h-3.5 w-3.5 mr-2" />
+            <>
+              <Trash2 className="h-3.5 w-3.5 sm:mr-2" />
+              <span className="hidden sm:inline">Delete</span>
+            </>
           )}
-          Delete
         </Button>
       </AlertDialogTrigger>
 

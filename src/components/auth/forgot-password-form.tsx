@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { Loader2, ArrowRight } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
