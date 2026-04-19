@@ -1,19 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { PenLine } from "lucide-react";
-import { ThemePicker } from "../ui/theme-picker";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { PenLine } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemePicker } from "../ui/theme-picker";
 import { getGithubStars } from "@/app/actions/github";
+import { cn } from "@/lib/utils";
 
+/**
+ * Navbar component for WithInk.me
+ * Features:
+ * - Glassmorphism background with backdrop blur
+ * - Dynamic GitHub star fetching via server actions
+ * - Thematic branding matching the "Think in ink." landing page
+ */
 export function Navbar() {
   const [starCount, setStarCount] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchStars = async () => {
-      const stars = await getGithubStars();
-      setStarCount(stars);
+      try {
+        const stars = await getGithubStars();
+        setStarCount(stars);
+      } catch (error) {
+        console.error("Error fetching GitHub stars:", error);
+        setStarCount(null);
+      }
     };
     fetchStars();
   }, []);
@@ -21,38 +35,45 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-md antialiased border-b border-border/40">
       <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <PenLine className="h-4 w-4 text-primary group-hover:-rotate-12 transition-transform" />
+        {/* Brand Section */}
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 group transition-opacity hover:opacity-90"
+        >
+          <PenLine className="h-4 w-4 text-primary group-hover:-rotate-12 transition-transform duration-300" />
           <span className="text-xl font-extrabold tracking-tighter">
-            inked
+            withink
             <span className="text-primary/60 italic font-serif font-light text-2xl ml-0.5">
               .
             </span>
           </span>
         </Link>
 
-        {/* Right Actions */}
+        {/* Right Actions: Theme & GitHub */}
         <div className="flex items-center gap-3">
           <ThemePicker />
 
           <div className="h-4 w-px bg-border/60 mx-1" />
 
-          {/* Proper GitHub Star Button */}
+          {/* GitHub Star Counter Button */}
           <Link
             href="https://github.com/niladri-gudu/deardiary"
             target="_blank"
+            rel="noreferrer"
             className="flex items-center"
           >
             <Button
               variant="ghost"
               size="sm"
-              className="h-9 rounded-full px-3 gap-2.5 text-muted-foreground hover:text-foreground border border-transparent hover:border-border/40 transition-all"
+              className={cn(
+                "h-9 rounded-full px-3 gap-2.5 text-muted-foreground transition-all duration-300",
+                "hover:text-foreground border border-transparent hover:border-border/40 hover:bg-muted/30",
+              )}
             >
               <GithubIcon className="h-4 w-4" />
               <div className="h-3 w-px bg-muted-foreground/20" />
               <span className="text-xs font-mono font-bold tracking-tighter">
-                {starCount ?? "..."}
+                {starCount !== null ? starCount.toLocaleString() : "..."}
               </span>
             </Button>
           </Link>
@@ -62,6 +83,10 @@ export function Navbar() {
   );
 }
 
+/**
+ * Internal GithubIcon component to avoid extra lucide-react dependencies
+ * and maintain consistent SVG control.
+ */
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
