@@ -21,15 +21,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { toast } from "sonner";
 import { FeedbackModal } from "../journal/feedback-modal";
+import { SettingsModal } from "../settings/settings-modal"; // 🚀 Import your new modal
 
 interface UserDropdownProps {
   session: any;
 }
 
 export function UserDropdown({ session }: UserDropdownProps) {
-  const [modalType, setModalType] = React.useState<"issue" | "feedback" | null>(
+  // 🔄 Unified state for all overlay types
+  const [activeView, setActiveView] = React.useState<"issue" | "feedback" | "settings" | null>(
     null,
   );
 
@@ -60,7 +61,7 @@ export function UserDropdown({ session }: UserDropdownProps) {
 
         <DropdownMenuContent
           align="end"
-          className="w-64 mt-3 rounded-4xl border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl antialiased p-2"
+          className="w-64 mt-3 rounded-[32px] border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl antialiased p-2"
         >
           <DropdownMenuLabel className="font-normal px-3 py-4">
             <div className="flex flex-col space-y-1.5">
@@ -76,12 +77,12 @@ export function UserDropdown({ session }: UserDropdownProps) {
           <DropdownMenuSeparator className="bg-border/40 mx-2" />
 
           <div className="space-y-1 pt-1.5">
+            {/* 🛠️ Settings now triggers the SettingsModal state */}
             <DropdownMenuItem
-              onClick={() =>
-                toast.info(
-                  "Settings are currently locked. The future is unwritten.",
-                )
-              }
+              onSelect={(e) => {
+                e.preventDefault();
+                setActiveView("settings");
+              }}
               className="gap-3 cursor-pointer rounded-xl py-2.5 px-3 focus:bg-accent focus:text-accent-foreground transition-colors"
             >
               <Settings className="h-4 w-4 opacity-70" />
@@ -91,7 +92,7 @@ export function UserDropdown({ session }: UserDropdownProps) {
             <DropdownMenuItem
               onSelect={(e) => {
                 e.preventDefault();
-                setModalType("issue");
+                setActiveView("issue");
               }}
               className="gap-3 cursor-pointer rounded-xl py-2.5 px-3 focus:bg-accent focus:text-accent-foreground transition-colors"
             >
@@ -102,7 +103,7 @@ export function UserDropdown({ session }: UserDropdownProps) {
             <DropdownMenuItem
               onSelect={(e) => {
                 e.preventDefault();
-                setModalType("feedback");
+                setActiveView("feedback");
               }}
               className="gap-3 cursor-pointer rounded-xl py-2.5 px-3 focus:bg-accent focus:text-accent-foreground transition-colors"
             >
@@ -115,9 +116,6 @@ export function UserDropdown({ session }: UserDropdownProps) {
 
           <div className="pt-1.5 pb-0.5">
             <DropdownMenuItem
-              style={
-                { "--accent-foreground": "239 68 68" } as React.CSSProperties
-              }
               className={cn(
                 "gap-3 cursor-pointer rounded-[22px] py-3 px-4 transition-all duration-200 text-red-500 font-semibold tracking-tight focus:bg-red-500/10 focus:text-red-500 focus:scale-[0.98] active:scale-95",
               )}
@@ -133,10 +131,18 @@ export function UserDropdown({ session }: UserDropdownProps) {
         </DropdownMenuContent>
       </DropdownMenu>
 
+      {/* 🚀 The "RainbowKit" Floating Settings Modal */}
+      <SettingsModal 
+        user={session.user} 
+        open={activeView === "settings"} 
+        onOpenChange={(open) => !open && setActiveView(null)} 
+      />
+
+      {/* 📬 Feedback & Issue Modals */}
       <FeedbackModal
-        type={modalType || "issue"}
-        open={modalType !== null}
-        onOpenChange={(open) => !open && setModalType(null)}
+        type={activeView === "feedback" ? "feedback" : "issue"}
+        open={activeView === "issue" || activeView === "feedback"}
+        onOpenChange={(open) => !open && setActiveView(null)}
       />
     </>
   );
